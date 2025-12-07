@@ -1,0 +1,171 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { X } from "lucide-react";
+import bg from "./assets/bg.png";
+import copy from "./assets/icons/copy.png";
+import logo from "./assets/logo2.png";
+import coins from "./assets/coins.png";
+import WhitelistDialog from "./WhiteListDialog";
+
+export default function Form({ onClose, onOpenWallet }) {
+  const [wallet, setWallet] = useState("");
+  const [refLink, setRefLink] = useState("");
+  const [open, setOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOpen(true); // open dialog on submit
+  };
+
+  const connectWallet = () => {
+    onOpenWallet();
+    // Dummy wallet address for demonstration
+    const dummy = "user12345";
+    setWallet(`0x${dummy}...abcd`);
+    setRefLink(`https://spica.gg/ref/${dummy}`);
+  };
+
+
+const onCopy = async () => {
+  if (!refLink) return;
+
+  try {
+    await navigator.clipboard.writeText(refLink);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // hide after 2 sec
+  } catch (e) {
+    console.error("Copy failed");
+  }
+};
+
+
+  return (
+    <div className="fixed z-50 pt-8 lg:pt-0 lg:h-[100vh] h-[90vh] inset-0 flex text-white justify-center items-center bg-black/40 backdrop-blur-sm " style={{ fontFamily: "'Tektur', sans-serif" }}>
+      {/* OUTER NEON BORDER */}
+      <div className="relative border border-cyan-300 w-full mx-2 max-w-4xl p-[2px] bg rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.6)]">
+        {copied && (
+          <div className="fixed z-50 bottom-6 left-1/2 -translate-x-1/2 
+                  bg-white text-black px-4 py-2 rounded-lg 
+                  shadow-lg text-sm animate-fadeIn">
+            Copied!
+          </div>
+        )}
+
+        <div
+          className="absolute rounded-3xl inset-0 m-[1px] bg-cover bg-center"
+          style={{ backgroundImage: `url(${bg})` }}
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-3xl lg:h-full py-8 lg:p-10"
+        >
+          {/* TOP COINS IMAGE */}
+          <img
+            src={coins}
+            className="absolute md:block hidden top-0 left-1/2 -translate-x-1/2 w-full max-h-[280px] object-cover rounded-t-3xl pointer-events-none"
+          />
+
+          {/* CLOSE BUTTON */}
+          <button
+            onClick={onClose}
+            className="absolute top-5 right-5 text-white/60 hover:text-white transition"
+          >
+            <X size={22} />
+          </button>
+          {/* AVATAR LOGO */}
+          <div className="absolute lg:top-20 lg:left-8 right-10 lg:w-34 w-16 rounded-full flex items-center justify-center">
+            <img src={logo} className="w-34" />
+          </div>
+
+          <div className="lg:mt-30 mx-6 lg:mx-20 relative lg:left-[10%]">
+            {/* TITLE */}
+            <h1 id="spica-whitelist-title" className="text-3xl md:text-4xl font-extrabold tracking-wide">
+              SPICA <span className="text-[#ee42d4]">(SPCA)</span> Whitelist
+            </h1>
+
+            {/* TEXT */}
+            <p className="text-sm  mt-3 max-w-3xl leading-relaxed">
+              Join the whitelist for early access to the Ezzstar ecosystem.
+              ⚡ Only whitelist members receive <span className="text-[#ffe55a] font-semibold">10% extra SPICA bonus</span> + 10% referral rewards. Access test platform, rewards, private Discord & early events.
+            </p>
+
+            {/* FORM */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 mt-10">
+
+              {/* Name */}
+              <div>
+                <label className="text-lg font-semibold">Name<span className="text-red-400">*</span></label>
+                <input required
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="text-lg font-semibold">Email<span className="text-red-400">*</span></label>
+                <input required
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                />
+              </div>
+
+              {/* X Username */}
+              <div>
+                <label className="text-lg font-semibold">X (Username)<span className="text-red-400">*</span></label>
+                <input required
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                />
+              </div>
+
+              {/* Wallet */}
+              <div>
+                <label className="text-lg font-semibold">Wallet Address<span className="text-red-400">*</span></label>
+                <button
+                  onClick={connectWallet}
+                  className="w-full px-4 py-2 bg-gradient-to-r border border-white/10 rounded-xl mt-1 bg-white/5 hover:bg-white/10 transition text-white"
+                >
+                  {wallet || "Connect Wallet"}
+                </button>
+              </div>
+            </div>
+
+            {/* REFERRAL */}
+            <div className="mt-6">
+              <label className="text-lg font-semibold">Referral Link <span className="text-cyan-300">(0)</span></label>
+
+              <div className="flex lg:flex-row flex-col items-center gap-4 mt-2">
+                <div onClick={onCopy} className="flex w-[320px] rounded-xl hover:bg-black/50">
+
+                  <button className="flex-1 truncate  bg-black/30 rounded-tr-none rounded-br-none border-r-0 border border-white/10 px-4 py-3 rounded-xl text-white/60 text-left">
+                    {refLink || "Connect your wallet first"}
+                  </button>
+
+                  <button
+                    disabled={!refLink}
+                    className="pr-4 z-40 bg-black/30 rounded-xl rounded-bl-none rounded-tl-none  border border-l-0 border-white/10 hover:bg-black/50 transition"
+                  >
+                    <img onClick={onCopy} src={copy} alt="" />
+                  </button>
+                </div>
+
+                <div className="flex flex-1 justify-center items-center">
+                  <button onClick={handleSubmit}
+                    className="px-16 py-2 bg-gradient-to-r from-[#b84bff] to-[#ff00d4] rounded-full text-lg shadow-[0_12px_40px_rgba(184,75,255,0.35)] hover:opacity-95 transition"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* SUBMIT BUTTON */}
+          </div>
+        </motion.div>
+      </div>
+      {open && <WhitelistDialog onClose={() => setOpen(false)} />}
+    </div>
+
+  );
+}
