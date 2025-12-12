@@ -15,7 +15,7 @@ export default function Form({ onClose, onOpenWallet }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setOpen(true); 
+    setOpen(true);
   };
 
   const connectWallet = () => {
@@ -90,24 +90,20 @@ export default function Form({ onClose, onOpenWallet }) {
               SPICA <span className="text-[#ee42d4]">(SPCA)</span> Whitelist
             </h1>
 
-            <p className="text-sm mt-3 leading-relaxed">
-              Join the whitelist for early access to the Ezzstar ecosystem.
-              ⚡ Only whitelist members receive{" "}
-              <span className="text-[#ffe55a] font-semibold">
-                10% extra SPICA bonus
-              </span>{" "}
-              + 10% referral rewards. Access test platform, rewards,
-              private Discord & early events.
+            <p className="text-[13.5px] leading-relaxed">
+              <br />
+              Join the whitelist for early access to the Ezzstar ecosystem. <br /> <br />
+              ⚡ Only whitelist members will receive <span className="text-amber-300"> 10% extra SPCA bonus</span> during the <span className="text-pink-600"> presale phase </span> — plus your own referral link to invite friends and earn an additional <span className="text-teal-500"> 10% bonus in SPCA and Crypto</span>. Enjoy exclusive perks, access to the test platform, rewards, private Discord channels, and early invitations to community events
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 mt-6">
               <div>
                 <label className="text-lg font-semibold">
                   Name<span className="text-red-400">*</span>
                 </label>
                 <input
                   required
-                className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
                 />
               </div>
 
