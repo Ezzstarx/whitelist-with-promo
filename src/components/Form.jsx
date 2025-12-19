@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import bg from "./assets/bg.png";
 import copy from "./assets/icons/copy.png";
@@ -7,22 +7,37 @@ import logo from "./assets/logo2.png";
 import coins from "./assets/coins.png";
 import WhitelistDialog from "./WhiteListDialog";
 
+
 export default function Form({ onClose, onOpenWallet }) {
-  const [wallet, setWallet] = useState("");
+  // 🔹 NEW LOGIC: FORM STATE
+  const [referralCode, setReferralCode] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [xUsername, setXUsername] = useState("");
+  const [walletAddress, setWalletAddress] = useState("");
+  const [country, setCountry] = useState(""); // NEW FIELD
+
+  // 🔹 EXISTING STATE
   const [refLink, setRefLink] = useState("");
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setOpen(true);
-  };
+  // 🔹 READ REFERRAL FROM URL (ADD HERE ⬇️)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      setReferralCode(ref);
+    }
+  }, []);
 
+  // 🔹 NEW LOGIC: CONNECT WALLET
   const connectWallet = () => {
     onOpenWallet();
     const dummy = "user12345";
-    setWallet(`0x${dummy}...abcd`);
-    setRefLink(`https://spica.gg/ref/${dummy}`);
+    setWalletAddress(`0x${dummy}...abcd`);
+    setRefLink(`${window.location.origin}/?ref=${dummy}`);
+
   };
 
   const onCopy = async () => {
@@ -36,16 +51,41 @@ export default function Form({ onClose, onOpenWallet }) {
     }
   };
 
+  // 🔹 NEW LOGIC: API SUBMISSION
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name || !email || !xUsername || !walletAddress || !country) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:3000/api/submit-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          xUsername,
+          walletAddress,
+          country, // SEND COUNTRY
+          referralCode, // 👈 NEW
+        }),
+      });
+
+      const data = await res.json();
+      console.log("SERVER RESPONSE:", data);
+      setOpen(true);
+    } catch (err) {
+      console.error("SUBMIT ERROR:", err);
+      alert("Submission failed");
+    }
+  };
+
   return (
     <div
-      className="
-      fixed inset-0 z-50 
-      flex 
-      text-white
-      overflow-y-auto
-      bg-black/40 backdrop-blur-sm
-      pt-2 lg:pt-0
-      "
+      className="fixed inset-0 z-50 flex text-white overflow-y-auto bg-black/40 backdrop-blur-sm pt-2 lg:pt-0"
       style={{ fontFamily: "'Tektur', sans-serif" }}
     >
       <div className="relative flex border mx-auto border-cyan-300 w-full max-w-4xl p-[2px] bg rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.6)]">
@@ -61,7 +101,7 @@ export default function Form({ onClose, onOpenWallet }) {
           style={{ backgroundImage: `url(${bg})` }}
         />
 
-        {/* Scrollable container */}
+        {/* RESTORED: Old Scrollable Container Styling */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,7 +121,7 @@ export default function Form({ onClose, onOpenWallet }) {
             <X size={22} />
           </button>
 
-          <div className="absolute lg:top-23 lg:left-8  left-5 w-16 lg:w-34 rounded-full">
+          <div className="absolute lg:top-23 lg:left-8 left-5 w-16 lg:w-34 rounded-full">
             <img src={logo} className="w-34" />
           </div>
 
@@ -90,79 +130,101 @@ export default function Form({ onClose, onOpenWallet }) {
               SPICA <span className="text-[#ee42d4]">(SPCA)</span> Whitelist
             </h1>
 
-            <p className="text-[13.5px] leading-relaxed">
-              <br />
-              Join the whitelist for early access to the Ezzstar ecosystem. <br /> <br />
+            {/* RESTORED: Exact text from old code */}
+            <p className="text-[13.5px] text-white/80 leading-relaxed">
+              Join the whitelist for early access to the Ezzstar ecosystem. <br />
               ⚡ Only whitelist members will receive <span className="text-amber-300"> 10% extra SPCA bonus</span> during the <span className="text-pink-600"> presale phase </span> — plus your own referral link to invite friends and earn an additional <span className="text-teal-500"> 10% bonus in SPCA and Crypto</span>. Enjoy exclusive perks, access to the test platform, rewards, private Discord channels, and early invitations to community events
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 mt-6">
-              <div>
-                <label className="text-lg font-semibold">
-                  Name<span className="text-red-400">*</span>
-                </label>
-                <input
-                  required
-                  className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
-                />
-              </div>
-
-              <div>
-                <label className="text-lg font-semibold">
-                  Email<span className="text-red-400">*</span>
-                </label>
-                <input required className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white" />
-              </div>
-
-              <div>
-                <label className="text-lg font-semibold">
-                  X (Username)<span className="text-red-400">*</span>
-                </label>
-                <input required className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white" />
-              </div>
-
-              <div>
-                <label className="text-lg font-semibold">
-                  Wallet Address<span className="text-red-400">*</span>
-                </label>
-                <button
-                  onClick={connectWallet}
-                  className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl mt-1 hover:bg-white/10 transition text-white"
-                >
-                  {wallet || "Connect Wallet"}
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <label className="text-lg font-semibold">
-                Referral Link <span className="text-cyan-300">(0)</span>
-              </label>
-
-              <div className="flex lg:flex-row flex-col items-center gap-4 mt-2">
-                <div onClick={onCopy} className="flex w-[320px] rounded-xl hover:bg-black/50">
-                  <button className="flex-1 truncate bg-black/30 rounded-tr-none rounded-br-none border-r-0 border border-white/10 px-4 py-3 rounded-xl text-white/60 text-left">
-                    {refLink || "Connect your wallet first"}
-                  </button>
-                  <button
-                    disabled={!refLink}
-                    className="pr-4 bg-black/30 rounded-xl rounded-bl-none rounded-tl-none border border-l-0 border-white/10 hover:bg-black/50 transition"
-                  >
-                    <img onClick={onCopy} src={copy} alt="" />
-                  </button>
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4 mt-4">
+                <div>
+                  <label className="text-lg font-semibold">
+                    Name<span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                  />
                 </div>
 
+                <div>
+                  <label className="text-lg font-semibold">
+                    Email<span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    required
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-lg font-semibold">
+                    X (Username)<span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    required
+                    value={xUsername}
+                    onChange={(e) => setXUsername(e.target.value)}
+                    className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-lg font-semibold">
+                    Wallet Address<span className="text-red-400">*</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={connectWallet}
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl mt-1 hover:bg-white/10 transition text-white"
+                  >
+                    {walletAddress || "Connect Wallet"}
+                  </button>
+                </div>
+                {/* NEW COUNTRY FIELD */}
+                <div>
+                  <label className="text-lg font-semibold">Country<span className="text-red-400">*</span></label>
+                  <input required value={country} onChange={(e) => setCountry(e.target.value)}
+                    className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-xl mt-1 focus:outline-none focus:border-cyan-400 placeholder:text-white/40 text-white" />
+                </div>
+
+              </div>
+
+              {/* RESTORED: Referral Link and Submit Layout */}
+              <div className="flex lg:flex-row flex-col items-center gap-4 mt-2">
+                <div>
+                  <label className="text-lg font-semibold">
+                    Referral Link <span className="text-cyan-300">(0)</span>
+                  </label>
+                  <div onClick={onCopy} className="flex w-[320px] rounded-xl hover:bg-black/50 cursor-pointer">
+                    <button type="button" className="flex-1 truncate bg-black/30 rounded-tr-none rounded-br-none border-r-0 border border-white/10 px-4 py-3 rounded-xl text-white/60 text-left">
+                      {refLink || "Connect your wallet first"}
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!refLink}
+                      className="pr-4 bg-black/30 rounded-xl rounded-bl-none rounded-tl-none border border-l-0 border-white/10 hover:bg-black/50 transition"
+                    >
+                      <img src={copy} alt="copy icon" />
+                    </button>
+                  </div>
+                </div>
                 <div className="flex flex-1 justify-center items-center">
                   <button
-                    onClick={handleSubmit}
-                    className="px-16 py-2 bg-gradient-to-r from-[#b84bff] to-[#ff00d4] rounded-full text-lg shadow-[0_12px_40px_rgrgba(184,75,255,0.35)] hover:opacity-95 transition"
+                    type="submit"
+                    className="px-16 py-2 bg-[#ff00d4] rounded-full text-lg shadow-[0_12px_40px_rgba(184,75,255,0.35)] hover:opacity-95 transition"
                   >
                     Submit
                   </button>
                 </div>
               </div>
-            </div>
-
+            </form>
           </div>
         </motion.div>
       </div>
