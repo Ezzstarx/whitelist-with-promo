@@ -70,7 +70,6 @@ export default function Hero({ onOpenForm }) {
                 style={{ backgroundImage: `url(${noise})` }}
             />
 
-
             {/* --- DARK OVERLAY FOR DEPTH --- */}
 
             {/* --- TOP YELLOW RIBBON --- */}
@@ -146,18 +145,18 @@ export default function Hero({ onOpenForm }) {
                         <span className="text-white lg:text-2xl text-sm">{time.seconds}s</span>
                     </div>
 
-                    <button style={{ fontFamily: "'Tektur', sans-serif" }} onClick={onOpenForm} className="lg:px-10  px-6 lg:text-xl text-md py-1 lg:py-2 z-40 mt-4 rounded-full text-white  tracking-wide opacity-95 hover:opacity-100 bg-gradient-to-r from-[#b04bff] via-[#c86bff] to-[#ff7bff] shadow-[0_0_40px_15px_rgba(200,80,255,0.45)] backdrop-blur-[2px]">
+                    <button style={{ fontFamily: "'Tektur', sans-serif" }} onClick={onOpenForm} className="lg:px-10  px-6 lg:text-xl text-md py-1 lg:py-2 z-40 mt-4 rounded-full text-white  tracking-wide opacity-95 hover:opacity-100 bg-[#ff7bff] shadow-[0_0_40px_15px_rgba(200,80,255,0.45)] backdrop-blur-[2px]">
                         Join Whitelist
                     </button>
                 </div>
             </div>
             {/* --- CYAN RIBBON BOTTOM RIGHT --- */}
-            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute z-40 bg-[#43d6ff] -bottom-60 -right-200 rotate-[-40deg] lg:bottom-10 lg:-right-70 lg:rotate-[-20deg]  text-black px-32 py-2 text-[14px] font-semibold tracking-wide whitespace-nowrap shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
+            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute z-30 bg-[#43d6ff] -bottom-60 -right-200 rotate-[-40deg] lg:bottom-10 lg:-right-70 lg:rotate-[-20deg]  text-black px-32 py-2 text-[14px] font-semibold tracking-wide whitespace-nowrap shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
                 Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World +
             </div>
 
             {/* ==== BUILDING RIGHT ARTWORK ==== */}
-            <motion.img src={building} alt="Cyber Building" className="z-30 absolute bottom-0 -right-20 w-[460px] md:w-[600px] lg:w-[630px] opacity-90 drop-shadow-[0_0_65px_#00eaff]" initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} />
+            <motion.img src={building} alt="Cyber Building" className="z-20 absolute bottom-0 -right-20 w-[460px] md:w-[600px] lg:w-[630px] opacity-90 drop-shadow-[0_0_65px_#00eaff]" initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} />
         </div>
     );
 }
