@@ -125,3 +125,15 @@ button{
     background: black;
     z-index: -1;
 }
+
+.group{
+    animation: leftMove 30s linear infinite;
+}
+@keyframes leftMove {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
