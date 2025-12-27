@@ -73,9 +73,18 @@ export default function Hero({ onOpenForm }) {
             {/* --- DARK OVERLAY FOR DEPTH --- */}
 
             {/* --- TOP YELLOW RIBBON --- */}
-            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute -top-80 -right-200 lg:top-2 lg:-right-100 rotate-[35deg] lg:rotate-[15deg] bg-[#f5d415] text-black px-32 py-2 text-[14px] font-semibold tracking-wide shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap"
-            >
-                Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 + Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 + Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3
+            {/* -top-80 right-[-200px] lg:top-40 lg:right-[-100px] rotate-[35deg] lg:rotate-[15deg] */}
+            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[15deg] rotate-[35deg] -left-100 top-200  flex lg:-left-20 lg:top-100 overflow-x-auto bg-[#f5d415] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
+                <div className="group">
+                    <div className="card">
+                        Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 + div + Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3
+                    </div>
+                </div>
+                <div aria-hidden className="group">
+                    <div className="card">
+                        Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 + div + Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3
+                    </div>
+                </div>
             </div>
 
             {/* ==== MAIN CENTER CONTENT ==== */}
@@ -151,8 +160,18 @@ export default function Hero({ onOpenForm }) {
                 </div>
             </div>
             {/* --- CYAN RIBBON BOTTOM RIGHT --- */}
-            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute z-30 bg-[#43d6ff] -bottom-60 -right-200 rotate-[-40deg] lg:bottom-10 lg:-right-70 lg:rotate-[-20deg]  text-black px-32 py-2 text-[14px] font-semibold tracking-wide whitespace-nowrap shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
-                Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World +
+            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[-15deg] rotate-[-35deg] -left-70 bottom-200 z-30 flex lg:bottom-70 overflow-x-auto bg-[#43d6ff] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
+                <div className="group">
+                    <div className="card">
+                       Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App
+                    </div>
+                </div>
+                <div aria-hidden className="group">
+                    <div className="card">
+                       + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App
+                    </div>
+                </div>
+                
             </div>
 
             {/* ==== BUILDING RIGHT ARTWORK ==== */}
