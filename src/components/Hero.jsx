@@ -160,15 +160,15 @@ export default function Hero({ onOpenForm }) {
                 </div>
             </div>
             {/* --- CYAN RIBBON BOTTOM RIGHT --- */}
-            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[-15deg] rotate-[-35deg] -left-70 bottom-200 z-30 flex lg:bottom-70 overflow-x-auto bg-[#43d6ff] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
-                <div className="group">
+            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[-15deg] rotate-[-35deg] -left-70 bottom-200 z-30 flex lg:bottom-90 overflow-x-auto bg-[#43d6ff] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
+                <div className="group2">
                     <div className="card">
-                       Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App
+                       Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity &nbsp;
                     </div>
                 </div>
-                <div aria-hidden className="group">
+                <div aria-hidden className="group2">
                     <div className="card">
-                       + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App
+                       + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity
                     </div>
                 </div>
                 
