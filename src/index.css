@@ -131,7 +131,19 @@ button{
 }
 @keyframes leftMove {
     from {
-        transform: translateX(0);
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.group2{
+    animation: rightMove 30s linear infinite;
+}
+@keyframes rightMove {
+    from {
+        transform: translateX(0%);
     }
     to {
         transform: translateX(-100%);
