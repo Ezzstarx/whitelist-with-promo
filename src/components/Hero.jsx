@@ -75,12 +75,12 @@ export default function Hero({ onOpenForm }) {
             {/* --- TOP YELLOW RIBBON --- */}
             {/* -top-80 right-[-200px] lg:top-40 lg:right-[-100px] rotate-[35deg] lg:rotate-[15deg] */}
             <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[15deg] rotate-[35deg] -left-100 top-200  flex lg:-left-20 lg:top-100 overflow-x-auto bg-[#f5d415] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
-                <div className="group">
+                <div className="group3">
                     <div className="card">
                         Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 + div + Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3
                     </div>
                 </div>
-                <div aria-hidden className="group">
+                <div aria-hidden className="group3">
                     <div className="card">
                         Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3 + div + Ezzstar + Spica + Your Coin + Digital Identity + Metaverse + Social + Virtual + Web3
                     </div>
@@ -129,7 +129,7 @@ export default function Hero({ onOpenForm }) {
                         </a>
                         <div>
                             <p className="z-50 mt-6 text-xl" style={{ fontFamily: "'Tektur', monospace" }}>Featured On</p>
-                            <a className="z-50" target="_blank" href="https://iq.wiki/">
+                            <a className="z-50" target="_blank" href="https://iq.wiki/wiki/ezzstar">
                                 <button
                                     className="px-4 magic2 cursor-pointer py-2 text-xl border z-30 border-white/15 rounded-xl bg-white/5 backdrop-blur-md text-white/90 hover:bg-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.45)] flex items-center justify-center"
                                 >
@@ -160,7 +160,7 @@ export default function Hero({ onOpenForm }) {
                 </div>
             </div>
             {/* --- CYAN RIBBON BOTTOM RIGHT --- */}
-            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[-15deg] rotate-[-35deg] -left-70 bottom-200 z-30 flex lg:bottom-90 overflow-x-auto bg-[#43d6ff] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
+            <div style={{ fontFamily: '"Fragment Mono", monospace' }} className="absolute lg:rotate-[-15deg] rotate-[-35deg] -left-150 bottom-200 z-30 flex lg:bottom-70 overflow-x-auto bg-[#43d6ff] text-black py-2 text-[14px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.45)] whitespace-nowrap">
                 <div className="group2">
                     <div className="card">
                        Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity + Coin + Virtual World + Social App + Metaverse + Ezzstar + Web3 Identity &nbsp;
