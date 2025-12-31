@@ -12,7 +12,7 @@ import building from "./assets/building.png";
 import { useEffect, useState } from "react";
 
 export default function Hero({ onOpenForm }) {
-    const targetDate = "2025-12-31T23:59:59"; // Set your target date here
+    const targetDate = "2026-1-31T23:59:59"; // Set your target date here
     const [time, setTime] = useState({
         days: "00",
         hours: "00",
@@ -179,6 +179,7 @@ export default function Hero({ onOpenForm }) {
         </div>
     );
 }
+
 
 
 
