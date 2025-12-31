@@ -126,7 +126,7 @@ button{
     z-index: -1;
 }
 
-.group{
+.group3{
     animation: leftMove 30s linear infinite;
 }
 @keyframes leftMove {
